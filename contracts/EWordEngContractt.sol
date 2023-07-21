@@ -227,6 +227,11 @@ contract EWordEngContractt is ERC20{
 
     }
 
+    // function whetherEwordExists(string memory) external view returns (string memory, string memory, string memory) {
+
+    //   return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
+    // }
+
     // function getPlWord(uint256 wordid) external view returns (string memory) {
     //     return  ewords[wordid].plword;
     // }

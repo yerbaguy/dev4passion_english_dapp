@@ -38,7 +38,11 @@ function AddWords() {
 
     // const ewordEngContract = "0x9EBD79915dA3aCa29139e61Fa46d5fE604576729"
     // const ewordEngContract = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
-    const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+    // 0x76d9c26896A069f481efCDe2d3E0C706dAC2A9BB
+    // const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+    
+    // const ewordEngContract = "0x76d9c26896A069f481efCDe2d3E0C706dAC2A9BB"
+     const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
 
     async function requestAccount() {
         // await window.ethereum.request({ method: "eth_requestAccounts" })
