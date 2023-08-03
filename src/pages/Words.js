@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 import {ethers} from "ethers"
 
-import EWordEngContract from '../artifacts/contracts/EWordEngContract.sol/EWordEngContract.json'
+// import EWordEngContract from '../artifacts/contracts/EWordEngContract.sol/EWordEngContract.json'
+import EWordEngContract from '../artifacts/contracts/EWordEngWordContract.sol/EWordEngWordContract.json'
+
 
 import { Container, Form } from 'semantic-ui-react'
 

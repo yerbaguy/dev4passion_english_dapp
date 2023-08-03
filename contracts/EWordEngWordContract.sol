@@ -2,10 +2,15 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "hardhat/console.sol";
 
-contract EWordEngContractt is ERC20{
+contract EWordEngWordContract is ERC20{
 
     event AddWord(address recipient, uint wordId);
+    // event WhetherEWord(bool exists);
+        event WhetherEWord(address sender, bool exists);
+
+        bool exists = false;
 
     // struct EWord {
     //     uint id;
@@ -29,10 +34,6 @@ contract EWordEngContractt is ERC20{
         // string engword_explained_wrongly5;
         // string engword_explained_wrongly6;
         string engword_explained;
-
-       ////// string content;
-
-
         //string engword_pronounciation;
 
       //  EWordWronglyExplained[][7] _ewords_wrongly_explained;
@@ -46,7 +47,9 @@ contract EWordEngContractt is ERC20{
     }
     ////
 
-    EWord[] private ewords;
+     EWord[] private ewords;
+      //EWord[] ewords;
+
     // //added
     // EWordWronglyExplained[] private ewords_wrongly_explained;
     // //
@@ -58,15 +61,7 @@ contract EWordEngContractt is ERC20{
 
     constructor() ERC20("","") {
 
-        ////////
-        // EWord[] storage _ewords = ewords;
-        // EWord memory eword = EWord(1, "kind", "kand","generous, helpful, and thinking about other people's feelings");
-        // EWord memory eword1 = EWord(2, "hardly", "hd.li/","only just; almost not");
-        // _ewords.push(eword);
-        // _ewords.push(eword1);
-        ///////
-
-
+       
 
         // EWordWronglyExplained[][7] storage _ewords_wrongly_explained = ewords_wrongly_explained;
         // EWordWronglyExplained memory eword_wrong = EWordWronglyExplained(0, "less than anything or anyone else; the smallest amount or number","special, or this and not any other");
@@ -80,8 +75,125 @@ contract EWordEngContractt is ERC20{
 
     mapping(uint256 => address) wordToOwner;
 
-    // mapping(uint256 => EWord) idToEWord;
-    // mapping(string => EWord) hashToEWord;
+
+    // function whetherEWordExists(string memory engword) external returns (bool) {
+    //  function whetherEWordExists(string memory engword) public returns (bool) {
+    // function whetherEWordExists(string memory engword) public view returns (bool) {
+
+
+
+    // function whetherEWordExists(string memory engword) public view returns (uint) { 
+      // function whetherEWordExists(string memory engword) public view returns (EWord[] memory) {   
+      // function whetherEWordExists(string memory engword) public view returns (bool) {  // was it
+    function whetherEWordExists(string memory engword) public returns (bool) { //// was here 
+        ////function whetherEWordExists(string memory engword) public view returns (bool, EWord[] memory) {   
+
+
+      EWord[] memory temporary = new EWord[](ewords.length);
+      uint counter = 0;
+     // bool exists = false;
+
+      for (uint i = 0; i < ewords.length; i ++) {
+     
+         if ((keccak256(bytes(ewords[i].engword))) == (keccak256(bytes(engword)))) {
+          temporary[counter] = ewords[i];
+          exists = true;
+          counter++;
+         } else {
+          exists = false;
+         }
+
+         //added
+         return exists;
+     
+        // if (ewords[i].engword == keccak256(bytes(engword))) {
+        //    exists  = true;
+        // } else {
+        //   exists = false;
+        // }
+      }
+
+
+
+      EWord[] memory result = new EWord[](counter);
+
+      for ( uint i=0; i< counter; i++) {
+        result[i] = temporary[i];
+      }
+
+     // emit WhetherEWordExists(exists);
+    
+    
+      return exists; // here
+      // return  ( exists, result[i].engword );
+    
+    
+     //// return counter;
+   
+     /////// return result; was here
+
+
+     // return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
+    }
+
+    //function whetherEWordExists(string memory engword) public returns (bool) { //// was here 
+        ////function whetherEWordExists(string memory engword) public view returns (bool, EWord[] memory) { 
+    function whetherEWordExists1(string memory engword) public view returns (EWord[] memory) {   
+
+
+      EWord[] memory temporary = new EWord[](ewords.length);
+      uint counter = 0;
+     // bool exists = false;
+
+      for (uint i = 0; i < ewords.length; i ++) {
+     
+         if ((keccak256(bytes(ewords[i].engword))) == (keccak256(bytes(engword)))) {
+          temporary[counter] = ewords[i];
+         // exists = true;
+          counter++;
+         } else {
+         // exists = false;
+         }
+
+         //added
+         // return exists;
+     
+        // if (ewords[i].engword == keccak256(bytes(engword))) {
+        //    exists  = true;
+        // } else {
+        //   exists = false;
+        // }
+      }
+
+
+
+      EWord[] memory result = new EWord[](counter);
+
+      for ( uint i=0; i< counter; i++) {
+        result[i] = temporary[i];
+      }
+
+     // emit WhetherEWordExists(exists);
+    
+    
+     ////////// return exists; // here
+      // return  ( exists, result[i].engword );
+    
+    
+     //// return counter;
+   
+      return result; // was here
+
+
+     // return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
+    }
+
+
+
+
+
+
+
 
     // function addEWord(string memory engword, string memory plword) external {
     function addEWord(string memory engword, 
@@ -92,15 +204,87 @@ contract EWordEngContractt is ERC20{
                     //   //
                       
                       ) external {
+ 
+      uint wordId = ewords.length;
+      uint whetherewordexists = 0;
 
-        uint wordId = ewords.length;
+      EWord[] memory temporary = new EWord[](ewords.length);
+
+
+       // ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
+
+
+       // bool exists = false; //declared on top
+       
+         exists = whetherEWordExists(engword);  //here
+
+         whetherEWordExists1(engword);
+         // ( exists, ewords ) = whetherEWordExists(engword);
+       
+       // exists = false;
+
+        console.log("exists", exists);
+        emit WhetherEWord(msg.sender, exists);
+
+        if (exists) {
+         // require(!exists, "There is such a word");
+            
+            exists = true; //added
+
+         return;
+
+         //added
+              
+        // emit WhetherEWord(msg.sender, true);
+        
+
+        } else {
+
+            exists = false; //added
+            ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
+        }
+
+       //temporary = whetherEWordExists(engword);
+       
+       //ewords.length = whetherEWordExists(engword);
+
+      //  if (temporary > 0) {
+         
+      //  } else {
+
+      //  }
+
+        // if (whetherEWordExists(engword) != 0) {
+        //                   //  ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
+        //                       ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
+          
+        // } else {
+        //   emit WhetherEWord(false);
+        // }
+
+        // uint wordId = ewords.length;
 
         // //added
         // uint wrongwordId = ewords_wrongly_explained.length;
         // //
 
         // ewords.push(EWord(wordId, engword, plword));
-        ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
+
+
+       
+      //  if (whetherEWordExists(engword)) {
+
+
+      //     
+      // if (exists) {
+      //     exists = true;
+      //     emit WhetherEWord(exists);
+      //  } else {
+      //           ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
+      //  }
+      // 
+        
+        // ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
 
         // //added
         // // ewords_wrongly_explained.push(EWordWronglyExplained(ewords_wrongly_explained, engword_wrongly_explained));
@@ -109,7 +293,8 @@ contract EWordEngContractt is ERC20{
 
         wordToOwner[wordId] = msg.sender;
 
-        emit AddWord(msg.sender, wordId);
+       // emit AddWord(msg.sender, wordId);
+       emit WhetherEWord(msg.sender, exists);
 
     }
    
@@ -234,10 +419,43 @@ contract EWordEngContractt is ERC20{
 
     }
 
-    // function whetherEwordExists(string memory) external view returns (string memory, string memory, string memory) {
+    // function whetherEWordExists(string memory engword) external view returns (bool) {
+  
+  
+  
+  
+  // function whetherEWordExists(string memory engword) external returns (bool) {
 
-    //   return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
-    // }
+
+
+  //     EWord[] memory temporary = new EWord[](ewords.length);
+  //     uint counter = 0;
+  //     bool exists = false;
+
+  //     for (uint i = 0; i < ewords.length; i ++) {
+     
+  //        if ((keccak256(bytes(ewords[i].engword))) == (keccak256(bytes(engword)))) {
+  //         exists = true;
+  //        } else {
+  //         exists = false;
+  //        }
+     
+  //       // if (ewords[i].engword == keccak256(bytes(engword))) {
+  //       //    exists  = true;
+  //       // } else {
+  //       //   exists = false;
+  //       // }
+  //     }
+
+  //    // emit WhetherEWordExists(exists);
+  //     return exists;
+
+  //    // return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
+  //   }
+
+
+
+
 
     // function getPlWord(uint256 wordid) external view returns (string memory) {
     //     return  ewords[wordid].plword;

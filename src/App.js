@@ -8,6 +8,7 @@ import Main from './pages/Main';
 import AddWords from './pages/AddWords';
 import Learn from './pages/Learn';
 import Words from './pages/Words';
+import WordsExists from './pages/WordExists';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/addword' element={ <AddWords />} />
         <Route path='/learn' element={ <Learn />} />
         <Route path='/words' element={ <Words />} />
+        <Route path='/addword/wordexists' element={ <WordsExists />} />
       </Routes>
     </Router>
       {/* <header className="App-header">

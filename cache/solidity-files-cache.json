@@ -440,8 +440,8 @@
       ]
     },
     "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp/contracts/EWordEngContractt.sol": {
-      "lastModificationDate": 1689945340368,
-      "contentHash": "448c2299623d49bbdd01d50aab10b567",
+      "lastModificationDate": 1689947615096,
+      "contentHash": "ca7144a46c4fa0fa9879d0e3970fbb37",
       "sourceName": "contracts/EWordEngContractt.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -509,6 +509,189 @@
       ],
       "artifacts": [
         "Lock"
+      ]
+    },
+    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp/contracts/EWordEngContractttt.sol": {
+      "lastModificationDate": 1689969458896,
+      "contentHash": "7b1649f8032d695d431d5d0455eeccb1",
+      "sourceName": "contracts/EWordEngContractttt.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@openzeppelin/contracts/utils/Counters.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "EWordEngContractttt"
+      ]
+    },
+    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp/node_modules/@openzeppelin/contracts/utils/Counters.sol": {
+      "lastModificationDate": 1686496878189,
+      "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
+      "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Counters"
+      ]
+    },
+    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp/contracts/EWordEngContracttttt.sol": {
+      "lastModificationDate": 1689971331625,
+      "contentHash": "bbc7f2f3faf4163d15aa47553c79fdd9",
+      "sourceName": "contracts/EWordEngContracttttt.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "EWordEngContracttttt"
+      ]
+    },
+    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1686496881215,
+      "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">= 0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    },
+    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp/contracts/EWordEngWordContract.sol": {
+      "lastModificationDate": 1690588769299,
+      "contentHash": "abb7bedf26c30e53e4b1cab66f63cccd",
+      "sourceName": "contracts/EWordEngWordContract.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "EWordEngWordContract"
       ]
     }
   }

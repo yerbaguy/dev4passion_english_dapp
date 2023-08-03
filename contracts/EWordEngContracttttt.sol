@@ -3,7 +3,7 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract EWordEngContractt is ERC20{
+contract EWordEngContracttttt is ERC20{
 
     event AddWord(address recipient, uint wordId);
 
@@ -29,10 +29,6 @@ contract EWordEngContractt is ERC20{
         // string engword_explained_wrongly5;
         // string engword_explained_wrongly6;
         string engword_explained;
-
-       ////// string content;
-
-
         //string engword_pronounciation;
 
       //  EWordWronglyExplained[][7] _ewords_wrongly_explained;
@@ -58,15 +54,7 @@ contract EWordEngContractt is ERC20{
 
     constructor() ERC20("","") {
 
-        ////////
-        // EWord[] storage _ewords = ewords;
-        // EWord memory eword = EWord(1, "kind", "kand","generous, helpful, and thinking about other people's feelings");
-        // EWord memory eword1 = EWord(2, "hardly", "hd.li/","only just; almost not");
-        // _ewords.push(eword);
-        // _ewords.push(eword1);
-        ///////
-
-
+       
 
         // EWordWronglyExplained[][7] storage _ewords_wrongly_explained = ewords_wrongly_explained;
         // EWordWronglyExplained memory eword_wrong = EWordWronglyExplained(0, "less than anything or anyone else; the smallest amount or number","special, or this and not any other");
@@ -80,8 +68,7 @@ contract EWordEngContractt is ERC20{
 
     mapping(uint256 => address) wordToOwner;
 
-    // mapping(uint256 => EWord) idToEWord;
-    // mapping(string => EWord) hashToEWord;
+    mapping(string => EWord) wordFromEWord;
 
     // function addEWord(string memory engword, string memory plword) external {
     function addEWord(string memory engword, 
@@ -100,6 +87,9 @@ contract EWordEngContractt is ERC20{
         // //
 
         // ewords.push(EWord(wordId, engword, plword));
+       
+       // whetherEWordExists(engword);
+       
         ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
 
         // //added
@@ -108,6 +98,8 @@ contract EWordEngContractt is ERC20{
         // //
 
         wordToOwner[wordId] = msg.sender;
+
+       // wordFromEWord[engword] = ewords;
 
         emit AddWord(msg.sender, wordId);
 
@@ -234,10 +226,32 @@ contract EWordEngContractt is ERC20{
 
     }
 
-    // function whetherEwordExists(string memory) external view returns (string memory, string memory, string memory) {
+     function whetherEWordExists(string memory engword) external view returns (bool) {
 
-    //   return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
-    // }
+
+      EWord[] memory temporary = new EWord[](ewords.length);
+      uint counter = 0;
+      bool exists = false;
+
+      for (uint i = 0; i < ewords.length; i ++) {
+     
+         if ((keccak256(bytes(ewords[i].engword))) == (keccak256(bytes(engword)))) {
+          exists = true;
+         } else {
+          exists = false;
+         }
+     
+        // if (ewords[i].engword == keccak256(bytes(engword))) {
+        //    exists  = true;
+        // } else {
+        //   exists = false;
+        // }
+      }
+
+      return exists;
+
+     // return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
+    }
 
     // function getPlWord(uint256 wordid) external view returns (string memory) {
     //     return  ewords[wordid].plword;

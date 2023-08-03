@@ -2,10 +2,15 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract EWordEngContractt is ERC20{
+contract EWordEngContractttt is ERC20{
 
-    event AddWord(address recipient, uint wordId);
+    using Counters for Counters.Counter;
+    Counters.Counter private _ewordIds;
+
+    // event AddWord(address recipient, uint wordId);
+    event AddWord(uint wordId, string engword, string engword_pronounciation, string eword_explained);
 
     // struct EWord {
     //     uint id;
@@ -30,7 +35,7 @@ contract EWordEngContractt is ERC20{
         // string engword_explained_wrongly6;
         string engword_explained;
 
-       ////// string content;
+       //// string content;
 
 
         //string engword_pronounciation;
@@ -80,8 +85,9 @@ contract EWordEngContractt is ERC20{
 
     mapping(uint256 => address) wordToOwner;
 
-    // mapping(uint256 => EWord) idToEWord;
+    mapping(uint256 => EWord) idToEWord;
     // mapping(string => EWord) hashToEWord;
+        mapping(string => EWord) wordFromEWord;
 
     // function addEWord(string memory engword, string memory plword) external {
     function addEWord(string memory engword, 
@@ -95,21 +101,45 @@ contract EWordEngContractt is ERC20{
 
         uint wordId = ewords.length;
 
+        ////////
+
+        _ewordIds.increment();
+        uint256 ewordIds = _ewordIds.current();
+
+
+        EWord storage eword = idToEWord[ewordIds];
+        
+        eword.id = ewordIds;
+        eword.engword = engword;
+        eword.engword_pronounciation = engword_pronounciation;
+        eword.engword_explained = engword_explained;
+
+        wordFromEWord[engword] = eword;
+
+
+
+
         // //added
         // uint wrongwordId = ewords_wrongly_explained.length;
         // //
 
         // ewords.push(EWord(wordId, engword, plword));
-        ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
+       
+       ////////excluded
+       /////// ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
 
         // //added
         // // ewords_wrongly_explained.push(EWordWronglyExplained(ewords_wrongly_explained, engword_wrongly_explained));
         // ewords_wrongly_explained.push(EWordWronglyExplained(id_wrongly_explained, engword_wrongly_explained));        
         // //
 
-        wordToOwner[wordId] = msg.sender;
 
-        emit AddWord(msg.sender, wordId);
+        //////excluded       
+        // wordToOwner[wordId] = msg.sender;
+
+        // emit AddWord(msg.sender, wordId);
+
+        emit AddWord(wordId, engword, engword_pronounciation, engword_explained);
 
     }
    
@@ -234,10 +264,33 @@ contract EWordEngContractt is ERC20{
 
     }
 
-    // function whetherEwordExists(string memory) external view returns (string memory, string memory, string memory) {
+    // function whetherEwordExists(string memory engword) external view returns (string memory, string memory, string memory) {
+    function whetherEwordExists(string memory engword) external view returns (bool) {
 
-    //   return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
-    // }
+
+      EWord[] memory temporary = new EWord[](ewords.length);
+      uint counter = 0;
+      bool exists = false;
+
+      for (uint i = 0; i < ewords.length; i ++) {
+     
+         if ((keccak256(bytes(ewords[i].engword))) == (keccak256(bytes(engword)))) {
+          exists = true;
+         } else {
+          exists = false;
+         }
+     
+        // if (ewords[i].engword == keccak256(bytes(engword))) {
+        //    exists  = true;
+        // } else {
+        //   exists = false;
+        // }
+      }
+
+      return exists;
+
+     // return ( ewords.engword, ewords.engword_pronounciation, ewords.engword_explained);
+    }
 
     // function getPlWord(uint256 wordid) external view returns (string memory) {
     //     return  ewords[wordid].plword;

@@ -70,7 +70,10 @@ const main = async() => {
   // const contractFactory = await ethers.getContractFactory("EWordEngContract");
   // const contract = await contractFactory.deploy();
   // await contract.deployed();
-  const EWordEngContract = await ethers.getContractFactory("EWordEngContract");
+   ////// const EWordEngContract = await ethers.getContractFactory("EWordEngContract");
+
+  //const EWordEngContract = await ethers.getContractFactory("EWordEngContractttt");
+  const EWordEngContract = await ethers.getContractFactory("EWordEngWordContract");
   const ewordEngContract = await EWordEngContract.deploy();
   await ewordEngContract.deployed();
 
